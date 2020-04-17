@@ -88,3 +88,19 @@ function get_ip(){
   }
   return $realip;
 }
+
+
+/**
+ * 打印微信log日志
+ * @param 文件名 第几行 日志内容
+ */
+function WX_LOG($basename=null,$num=null,$msg=null)
+{
+  //$msg = [2018-04-11 09:22:56]文件名：wxpay，第29行，[info]：日志信息
+  $msg = $msg;
+
+  // 日志文件名：日期.txt
+  $path = ROOT_PATH.DS.'public'. DS .'logs'. DS .date("Ymd").'.txt';
+
+  file_put_contents($path, $msg.PHP_EOL,FILE_APPEND);
+}
