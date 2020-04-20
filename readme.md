@@ -36,6 +36,13 @@
 7.  微信开发之JS-SDK + PHP实现录音、上传、语音识别
 	- Wechat.php	微信操作类
 	- Wxmedia.php  录音、语音识别
+8.  微信开发之微信网页授权
+	- Wxopera.php -> shouquan()	微信操作类
+9.  微信开发之生成二维码		
+	- Wxopera.php -> qrcode()
+10.  
+	
+
 	
 
 
@@ -53,7 +60,12 @@
 5.  基于THINKPHP5实现红蓝投票功能
 	- vote	->	index.html
 6.  微信开发之JS-SDK + PHP实现录音、上传、语音识别
-	-wxmedia -> index.html
+	- wxmedia -> index.html
+7.  微信开发之生成二维码
+	- wxopera -> qrcode
+8.  
+	
+
 
 ----------
 
@@ -66,3 +78,5 @@
 2. 植物识别：对接的是"百度AI开发平台"的接口，接口地址：[https://ai.baidu.com/ai-doc/IMAGERECOGNITION/Mk3bcxe9i](https://ai.baidu.com/ai-doc/IMAGERECOGNITION/Mk3bcxe9i "植物识别")
 3. 发送邮件需要phpmailer第三方类库扩展，需要开启邮箱的几个服务，参考：[https://www.cnblogs.com/zxf100/p/12627088.html](https://www.cnblogs.com/zxf100/p/12627088.html "Thinkphp5+PHPMailer实现发送邮件") 和  [https://www.cnblogs.com/zxf100/p/12658351.html](https://www.cnblogs.com/zxf100/p/12658351.html "thinkphp实现用户注册时邮箱激活")
 4. 微信开发之JS-SDK + PHP实现录音、上传、语音识别 参考 [微信开发之JS-SDK + PHP实现录音、上传、语音识别](https://www.cnblogs.com/zxf100/p/12718661.html "微信开发之JS-SDK + PHP实现录音、上传、语音识别")
+5. 微信开发之网页授权 参考 [https://www.cnblogs.com/zxf100/p/12720983.html](https://www.cnblogs.com/zxf100/p/12720983.html "微信开发之网页授权 PHP")
+6. 微信开发之生成二维码 参考 [https://www.cnblogs.com/zxf100/p/12720093.html](https://www.cnblogs.com/zxf100/p/12720093.html "微信开发之生成二维码，扫码关注公众号PHP")
