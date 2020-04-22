@@ -142,4 +142,31 @@ class Wxopera extends Wechat
 	    return $str;
 	}
 
+
+	/////////////////////模板推送/////////////////////////
+	public function pushmsg(){
+		// 实例化微信操作类
+		$wx = new Wechat();
+		
+		$token = $wx->getAccessToken();
+		
+		// 推送数据
+		$data = [
+			"touser" => "oTwTywxibPkyhkZFkBJ9HKy5tW0k",		//接收者的openid
+			"template_id" => "szXdvWjezI8Z9mgdd-otK4NTAB8WrEtowC3vQPD5sqE",		//申请的消息模板id
+			"url" => "http://test.zizhuyou.site/index/Plantocr/index",	//推送消息中点击跳转的链接，不填就不会跳转
+			"data" => array(
+				"name" => array("value"=>"测试用户","color"=>"#173177"),
+				"time" => array("value"=>date('Y-m-d H:i:s',time()),"color"=>"#173177")
+			)
+		];
+		
+		$url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=$token";
+		
+		// 发送模板消息
+		$res = $wx->http_curl($url, 'post', 'json', json_encode($data));
+		echo "<pre>";
+		print_r($res);
+	}
+
 }

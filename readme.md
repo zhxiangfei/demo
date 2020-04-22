@@ -10,6 +10,7 @@
 8. 微信开发之微信网页授权
 9. 微信开发之生成二维码
 10. 微信开发之JS-SDK + PHP实现分享朋友/QQ，朋友圈/QQ空间
+11. 微信开发之消息模板推送
 
 ## 二、目录结构
 
@@ -45,7 +46,9 @@
 	- Wxopera.php -> qrcode()
 10.  微信开发之JS-SDK + PHP实现分享朋友/QQ，朋友圈/QQ空间
 	- Wxopera.php -> share()
-11.  
+11.  微信开发之消息模板推送
+	- Wxopera.php -> pushmsg()
+12.  
 	
 
 	
