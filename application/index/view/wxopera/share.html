@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>微信分享</title>
+		<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+		<script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+	</head>
+	<body>
+		
+		<script type="text/javascript" charset="utf-8">
+		wx.config({
+		    debug: false,
+		    appId: '{$signPackage.appId}',
+		    timestamp: {$signPackage.timestamp},
+		    nonceStr: '{$signPackage.nonceStr}',
+		    signature: '{$signPackage.signature}',
+		    jsApiList: [
+		      // 所有要调用的 API 都要加到这个列表中
+		      'updateAppMessageShareData', 'updateTimelineShareData'
+		    ]
+	  	});
+	  	
+	  	// 在这里调用 API
+		wx.ready(function () {
+			// 分享朋友及qq
+			wx.updateAppMessageShareData({ 
+			    title: '测试分享标题', // 分享标题
+			    desc: '分享描述', // 分享描述
+			    link: 'http://test.zizhuyou.site/index/Plantocr/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+			    imgUrl: 'http://test.zizhuyou.site/static/index/images/dog.png', // 分享图标
+			    success: function () {
+			      // 设置成功
+			      console.log('设置成功');
+			      //alert('分享朋友或QQ成功');
+			    },
+			    
+			});
+			
+			// 分享朋友圈及QQ空间
+			wx.updateTimelineShareData({ 
+			    title: '测试分享标题', // 分享标题
+			    link: 'http://test.zizhuyou.site/index/Plantocr/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+			    imgUrl: 'http://test.zizhuyou.site/static/index/images/dog.png', // 分享图标
+			    success: function () {
+			      // 设置成功
+			      //alert('分享朋友圈及QQ空间成功');
+			    }
+			})
+		})
+		</script>
+	</body>
+</html>

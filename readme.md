@@ -7,6 +7,9 @@
 5. 发送邮件
 6. 基于THINKPHP5实现红蓝投票功能
 7. 微信开发之JS-SDK + PHP实现录音、上传、语音识别
+8. 微信开发之微信网页授权
+9. 微信开发之生成二维码
+10. 微信开发之JS-SDK + PHP实现分享朋友/QQ，朋友圈/QQ空间
 
 ## 二、目录结构
 
@@ -40,7 +43,9 @@
 	- Wxopera.php -> shouquan()	微信操作类
 9.  微信开发之生成二维码		
 	- Wxopera.php -> qrcode()
-10.  
+10.  微信开发之JS-SDK + PHP实现分享朋友/QQ，朋友圈/QQ空间
+	- Wxopera.php -> share()
+11.  
 	
 
 	
@@ -62,8 +67,10 @@
 6.  微信开发之JS-SDK + PHP实现录音、上传、语音识别
 	- wxmedia -> index.html
 7.  微信开发之生成二维码
-	- wxopera -> qrcode
-8.  
+	- wxopera -> qrcode.html
+8.  微信开发之JS-SDK + PHP实现分享朋友/QQ，朋友圈/QQ空间
+	- wxopera -> share.html
+9.  
 	
 
 
@@ -80,3 +87,4 @@
 4. 微信开发之JS-SDK + PHP实现录音、上传、语音识别 参考 [微信开发之JS-SDK + PHP实现录音、上传、语音识别](https://www.cnblogs.com/zxf100/p/12718661.html "微信开发之JS-SDK + PHP实现录音、上传、语音识别")
 5. 微信开发之网页授权 参考 [https://www.cnblogs.com/zxf100/p/12720983.html](https://www.cnblogs.com/zxf100/p/12720983.html "微信开发之网页授权 PHP")
 6. 微信开发之生成二维码 参考 [https://www.cnblogs.com/zxf100/p/12720093.html](https://www.cnblogs.com/zxf100/p/12720093.html "微信开发之生成二维码，扫码关注公众号PHP")
+7. 微信开发之JS-SDK + PHP实现分享朋友/QQ，朋友圈/QQ空间 参考 	[https://www.cnblogs.com/zxf100/p/12749770.html](https://www.cnblogs.com/zxf100/p/12749770.html "微信开发之JS-SDK + php 实现分享朋友/朋友圈，QQ/QQ空间")
