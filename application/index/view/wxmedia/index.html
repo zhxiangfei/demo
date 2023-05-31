@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>语音识别</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script type="text/javascript" src="/static/index/js/jquery.js"></script>
+<script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/index/layui/css/layui.css">
+
+  	<style>
+  		button{
+  			height: 40px;
+  			width: 120px;
+  			margin: 25px;
+  		}
+  		#ul{
+  			margin-top: 15px;
+  			height: 40px;
+  			line-height: 40px;
+  			text-align: center;
+  			padding: 5px;
+  		}
+  		#ul li{
+  			width: 80%;
+  		}
+  		#ullist button{
+			width:98%;
+			height:40px;
+			border-radius:5;
+			text-align: center;
+			margin: 5px;
+		}
+
+  	</style>
+</head>
+<body>
+	<div class="container" style="width:100%">
+		<div class="row">
+			<ul class="list-unstyled" id="ullist">
+				
+			</ul>
+		</div>
+		<div id="btn" class="navbar-fixed-bottom" style="user-select:none:align-content:center">
+			<center>
+				<button id="talk_btn" type="button" class="layui-btn">录 音</button>
+				<button id="uploadVoice" type="button" class="layui-btn layui-btn-normal">上传 录音</button><br>
+				<button id="translateVoice" type="button" class="layui-btn layui-btn-danger" style="width:90%;">语音 识别</button><br>
+			</center>
+		</div>
+	</div>
+	
+<script type="text/javascript">
+
+	
+	var recordTimer = 300;
+	var voice={
+  				localId:'',
+  				serverId:''
+  			}
+	
+	wx.config({
+	    debug: false,
+	    appId: '{$signPackage.appId}',
+	    timestamp: {$signPackage.timestamp},
+	    nonceStr: '{$signPackage.nonceStr}',
+	    signature: '{$signPackage.signature}',
+	    jsApiList: [
+	      // 所有要调用的 API 都要加到这个列表中
+	      'startRecord', 'stopRecord', 'playVoice', 'uploadVoice', 'downloadVoice', 'translateVoice'
+	    ]
+  	});
+	wx.ready(function () {
+		var START;
+		var END;
+	    // 在这里调用 API
+	    $("#talk_btn").on('touchstart',function (event) {
+	    	// console.log(event)
+	    	event.preventDefault();
+	    	START = new Date().getTime();
+
+	    	// 延迟后录音，避免误操作
+	    	recordTimer = setTimeout(function () {
+
+			    wx.startRecord({
+			    	success:function () {
+			    		localStorage.rainAllowRecord = 'true';
+			    	},
+			    	cancel:function () {
+			    		console.log('用户拒绝了录音');
+			    	}
+			    });
+	    	},300)
+	    });
+	    
+	    //松手结束录音
+		$('#talk_btn').on('touchend', function(event){
+		    event.preventDefault();
+		    END = new Date().getTime();
+		    
+		    if((END - START) < 3000){
+		        END = 0;
+		        START = 0;
+		        alert('录音时间不能少于3秒');
+		        //小于300ms，不录音
+		        clearTimeout(recordTimer);
+		    }else{
+		    	
+		    	var mytime = new Date().toLocaleTimeString();  //获取当前时间
+		    	
+		        wx.stopRecord({
+		          success: function (res) {
+		          	
+		            voice.localId = res.localId;
+		            console.log(voice.localId)
+		            var str="<li audioid='"+voice.localId+"'><button class='layui-btn layui-btn-primary'>音频任务"+mytime+"</button></li>";
+					$("#ullist").append(str);//显示到列表
+		          },
+		          fail: function (res) {
+		            alert(JSON.stringify(res));
+		          }
+		        });
+		    }
+		});
+	});
+	wx.error(function (res) {
+		console.log(res)
+	});
+	
+	//list播放语音
+	$("ul").on("click", "li", function() {
+		var audioid = $(this).attr("audioid");
+		
+		wx.playVoice({
+			localId: audioid
+		});
+	})
+
+	// 上传语音
+	$("#uploadVoice").click(function(){
+		
+		//调用微信的上传录音接口把本地录音先上传到微信的服务器
+		wx.uploadVoice({
+			localId:voice.localId,	// 需要上传的音频的本地ID，由stopRecord接口获得
+			isShowProgressTips: 1,	// 默认为1，显示进度提示
+			success:function(res){
+				
+				if(res.errMsg == 'uploadVoice:ok'){
+					voice.serverId = res.serverId
+					alert('录音上传成功');
+				}else{
+					alert(res.errMsg)
+				}
+			}
+		})
+	})
+	
+	// 语音识别
+	$("#translateVoice").click(function(){
+		wx.translateVoice({
+			localId:voice.localId,	// 需要识别的音频的本地Id，由录音相关接口获得
+			isShowProgressTips:1,	// 默认为1，显示进度提示
+			success:function(res){
+				console.log(res)
+				if(res.errMsg == "translateVoice:ok"){
+					alert(res.translateResult);	// 语音识别的结果
+				}else{
+					alert(res.errMsg)
+				}
+				
+			}
+		})
+	})
+
+</script>
+
+</body>
+
+</html>

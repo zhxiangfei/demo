@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>输入框回车生成标签</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width" />
+<script src="/static/index/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/index/css/css.css"/>
+<script src="/static/index/js/tagsinput.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+
+<div class="box">
+	<h1 style="text-align: center;margin: 20px 0;margin-top: 200px;">提取input中的标签</h1>
+	<div class="tagsinput-primary form-group">
+	    <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车"/>
+	    <button class="btn" onClick="getinput()">获取输入的值</button>
+	</div>
+</div>
+
+<script type="text/javascript">
+function getinput(){
+	alert($('#tagsinputval').val());
+}
+</script>
+
+</body>
+</html>
